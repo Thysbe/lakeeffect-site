@@ -1,0 +1,9 @@
+name: test
+date: '123'
+time: '123'
+venue: '123'
+address: '123'
+acts:
+  - benos
+price: Free
+note: ur mom

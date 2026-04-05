@@ -41,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${barlow.variable} ${space.variable} ${idroid.variable}`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${barlow.variable} ${space.variable} ${idroid.variable}`}>
       <body className="min-h-screen flex flex-col bg-night text-snow">
         <Nav />
         <main className="flex-1">{children}</main>

@@ -13,7 +13,9 @@
       "WebFetch(domain:lakeeffectrecords.bandcamp.com)",
       "WebFetch(domain:www.instagram.com)",
       "Bash(git rm:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(netstat -ano)",
+      "Bash(npm install:*)"
     ]
   }
 }

@@ -69,6 +69,7 @@ export default async function Home() {
             src="/img/cold_front_vol_2.jpg"
             alt="Cold Front Vol. 2"
             fill
+            sizes="(max-width: 1024px) 100vw, 38vw"
             className="object-cover"
             priority
           />
