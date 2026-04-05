@@ -1,38 +1,18 @@
 import Link from "next/link";
 import Image from "next/image";
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../keystatic.config';
 
-const upcomingEvents = [
-  {
-    id: 1,
-    date: "SAT — MAY 02, 2026",
-    venue: "Smart Bar",
-    name: "Lake Effect All-Nighter",
-    acts: "thysbe / otherself",
-  },
-  {
-    id: 2,
-    date: "SAT — MAY 16, 2026",
-    venue: "Berlin Chicago",
-    name: "Gyration Vol. 3",
-    acts: "relativity lounge / Swesdo",
-  },
-  {
-    id: 3,
-    date: "SAT — JUN 06, 2026",
-    venue: "Promontory Rooftop",
-    name: "Open Air: June",
-    acts: "Full Lake Effect Roster",
-  },
-];
+const reader = createReader(process.cwd(), keystaticConfig);
 
-const artists = [
-  { name: "relativity lounge", descriptor: "Deep house · Ambient" },
-  { name: "Swesdo", descriptor: "Footwork · Juke" },
-  { name: "otherself", descriptor: "Experimental dance" },
-  { name: "thysbe", descriptor: "Electronic · Club" },
-];
+export default async function Home() {
+  const [allEvents, allArtists] = await Promise.all([
+    reader.collections.events.all(),
+    reader.collections.artists.all(),
+  ]);
 
-export default function Home() {
+  const upcomingEvents = allEvents.slice(0, 3);
+
   return (
     <>
       {/* Hero */}
@@ -150,7 +130,7 @@ export default function Home() {
         <div>
           {upcomingEvents.map((event) => (
             <Link
-              key={event.id}
+              key={event.slug}
               href="/events"
               className="group flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-10 py-7 border-t border-shore hover:bg-depth transition-colors duration-200 -mx-6 px-6"
             >
@@ -162,7 +142,7 @@ export default function Home() {
                   minWidth: "15rem",
                 }}
               >
-                {event.date}
+                {event.entry.date}
               </span>
               <span
                 className="font-display uppercase group-hover:text-lake transition-colors duration-200"
@@ -173,20 +153,20 @@ export default function Home() {
                   color: "oklch(93% 0.012 218)",
                 }}
               >
-                {event.name}
+                {event.entry.name}
               </span>
               <div className="sm:ml-auto flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-10 shrink-0">
                 <span
                   className="text-[0.65rem] tracking-wide text-mist"
                   style={{ fontFamily: "var(--font-space), sans-serif" }}
                 >
-                  {event.acts}
+                  {event.entry.acts.join(' / ')}
                 </span>
                 <span
                   className="text-[0.65rem] tracking-[0.2em] uppercase text-ice"
                   style={{ fontFamily: "var(--font-space), sans-serif" }}
                 >
-                  {event.venue}
+                  {event.entry.venue}
                 </span>
               </div>
             </Link>
@@ -211,9 +191,9 @@ export default function Home() {
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-shore max-w-7xl mx-auto">
-          {artists.map((artist) => (
+          {allArtists.map((artist) => (
             <div
-              key={artist.name}
+              key={artist.slug}
               className="bg-night px-8 py-12 hover:bg-depth transition-colors duration-300 group"
             >
               <h3
@@ -226,13 +206,13 @@ export default function Home() {
                   color: "oklch(93% 0.012 218)",
                 }}
               >
-                {artist.name}
+                {artist.entry.name}
               </h3>
               <p
                 className="text-[0.65rem] tracking-[0.3em] uppercase text-ice mt-4"
                 style={{ fontFamily: "var(--font-space), sans-serif" }}
               >
-                {artist.descriptor}
+                {artist.entry.descriptor}
               </p>
             </div>
           ))}

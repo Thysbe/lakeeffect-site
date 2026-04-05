@@ -1,68 +1,16 @@
 import type { Metadata } from "next";
+import { createReader } from '@keystatic/core/reader';
+import keystaticConfig from '../../../keystatic.config';
 
 export const metadata: Metadata = {
   title: "Events — Lake Effect Records",
 };
 
-const events = [
-  {
-    id: 1,
-    date: "SAT MAY 02, 2026",
-    time: "10PM — 4AM",
-    venue: "Smart Bar",
-    address: "3730 N Clark St, Chicago",
-    name: "Lake Effect All-Nighter",
-    acts: ["thysbe", "otherself"],
-    price: "$15",
-    note: "21+",
-  },
-  {
-    id: 2,
-    date: "SAT MAY 16, 2026",
-    time: "9PM — 2AM",
-    venue: "Berlin Chicago",
-    address: "954 W Belmont Ave, Chicago",
-    name: "Gyration Vol. 3",
-    acts: ["relativity lounge", "Swesdo"],
-    price: "Free before 11PM / $10 after",
-    note: "18+",
-  },
-  {
-    id: 3,
-    date: "SAT JUN 06, 2026",
-    time: "4PM — 10PM",
-    venue: "Promontory Rooftop",
-    address: "5311 S Lake Park Ave, Chicago",
-    name: "Open Air: June",
-    acts: ["thysbe", "otherself", "relativity lounge", "Swesdo"],
-    price: "$10",
-    note: "All ages",
-  },
-  {
-    id: 4,
-    date: "FRI JUL 03, 2026",
-    time: "9PM — 3AM",
-    venue: "Subterranean",
-    address: "2011 W North Ave, Chicago",
-    name: "Independence Dance",
-    acts: ["Swesdo", "Special Guests TBA"],
-    price: "$12",
-    note: "21+",
-  },
-  {
-    id: 5,
-    date: "SAT AUG 15, 2026",
-    time: "2PM — 8PM",
-    venue: "Ping Tom Memorial Park",
-    address: "300 W 19th St, Chicago",
-    name: "Open Air: Late Summer",
-    acts: ["relativity lounge", "otherself", "thysbe"],
-    price: "Free",
-    note: "All ages",
-  },
-];
+const reader = createReader(process.cwd(), keystaticConfig);
 
-export default function EventsPage() {
+export default async function EventsPage() {
+  const events = await reader.collections.events.all();
+
   return (
     <div className="max-w-7xl mx-auto px-6 py-16 w-full">
       {/* Header */}
@@ -88,9 +36,9 @@ export default function EventsPage() {
 
       {/* Events list */}
       <div>
-        {events.map((event, index) => (
+        {events.map((event) => (
           <div
-            key={event.id}
+            key={event.slug}
             className="group border-t border-shore py-10 hover:bg-depth transition-colors duration-200 -mx-6 px-6"
           >
             <div className="flex flex-col lg:flex-row lg:items-start gap-6 lg:gap-12">
@@ -103,13 +51,13 @@ export default function EventsPage() {
                     color: "oklch(68% 0.10 212)",
                   }}
                 >
-                  {event.date}
+                  {event.entry.date}
                 </p>
                 <p
                   className="text-[0.62rem] tracking-widest uppercase text-mist mt-1"
                   style={{ fontFamily: "var(--font-space), sans-serif" }}
                 >
-                  {event.time}
+                  {event.entry.time}
                 </p>
               </div>
 
@@ -125,10 +73,10 @@ export default function EventsPage() {
                     color: "oklch(93% 0.012 218)",
                   }}
                 >
-                  {event.name}
+                  {event.entry.name}
                 </h2>
                 <div className="flex flex-wrap gap-2 mt-4">
-                  {event.acts.map((act) => (
+                  {event.entry.acts.map((act) => (
                     <span
                       key={act}
                       className="text-[0.62rem] tracking-[0.2em] uppercase text-snow border border-shore px-3 py-1.5"
@@ -150,26 +98,26 @@ export default function EventsPage() {
                     letterSpacing: "-0.01em",
                   }}
                 >
-                  {event.venue}
+                  {event.entry.venue}
                 </p>
                 <p
                   className="text-[0.62rem] tracking-wide text-mist mt-1"
                   style={{ fontFamily: "var(--font-space), sans-serif" }}
                 >
-                  {event.address}
+                  {event.entry.address}
                 </p>
                 <div className="flex lg:justify-end items-center gap-4 mt-4">
                   <span
                     className="text-[0.62rem] tracking-[0.2em] uppercase text-mist"
                     style={{ fontFamily: "var(--font-space), sans-serif" }}
                   >
-                    {event.note}
+                    {event.entry.note}
                   </span>
                   <span
                     className="text-[0.65rem] tracking-[0.1em] uppercase text-snow font-semibold"
                     style={{ fontFamily: "var(--font-space), sans-serif" }}
                   >
-                    {event.price}
+                    {event.entry.price}
                   </span>
                 </div>
               </div>
