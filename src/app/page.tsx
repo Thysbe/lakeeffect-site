@@ -57,9 +57,10 @@ export default function Home() {
             <span style={{ color: "oklch(50% 0.18 228)" }}>Effect</span>
             <br />
             <span
+              className="font-label"
               style={{
-                fontSize: "clamp(2.2rem, 7.5vw, 7.5rem)",
-                letterSpacing: "0.06em",
+                fontSize: "clamp(1.8rem, 6vw, 6rem)",
+                letterSpacing: "0.1em",
                 color: "oklch(68% 0.10 212)",
                 fontWeight: 700,
               }}

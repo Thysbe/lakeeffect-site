@@ -17,8 +17,8 @@ export default function Nav() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-14">
         <Link
           href="/"
-          className="font-display uppercase tracking-[0.18em] text-snow hover:text-lake transition-colors duration-200"
-          style={{ fontWeight: 700, fontSize: "0.8rem" }}
+          className="font-label tracking-[0.12em] text-snow hover:text-lake transition-colors duration-200"
+          style={{ fontWeight: 700, fontSize: "0.85rem" }}
         >
           Lake Effect Records
         </Link>

@@ -4,8 +4,8 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
         <div>
           <p
-            className="font-display uppercase tracking-[0.2em] text-ice"
-            style={{ fontWeight: 700, fontSize: "0.75rem" }}
+            className="font-label tracking-[0.12em] text-ice"
+            style={{ fontWeight: 700, fontSize: "0.8rem" }}
           >
             Lake Effect Records
           </p>

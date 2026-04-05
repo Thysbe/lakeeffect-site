@@ -8,7 +8,11 @@
       "Bash(git remote:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(git branch:*)",
+      "WebFetch(domain:lakeeffectrecords.bandcamp.com)",
+      "WebFetch(domain:www.instagram.com)",
+      "Bash(git rm:*)"
     ]
   }
 }
