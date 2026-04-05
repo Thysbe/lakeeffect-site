@@ -44,17 +44,17 @@ export default function Home() {
             Chicago, Illinois &nbsp;&middot;&nbsp; Est. 2024
           </p>
           <h1
-            className="font-display uppercase leading-none fade-up fade-up-2"
+            className="font-label leading-none fade-up fade-up-2"
             style={{
-              fontWeight: 800,
+              fontWeight: 700,
               fontSize: "clamp(5.5rem, 20vw, 19rem)",
               lineHeight: 0.86,
-              letterSpacing: "-0.025em",
+              letterSpacing: "0.02em",
             }}
           >
             Lake
             <br />
-            <span style={{ color: "oklch(50% 0.18 228)" }}>Effect</span>
+            <span style={{ color: "oklch(50% 0.18 228)", textTransform: "none" }}>Effect</span>
             <br />
             <span
               className="font-label"
