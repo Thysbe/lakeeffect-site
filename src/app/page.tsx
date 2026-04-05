@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const upcomingEvents = [
   {
@@ -35,48 +36,76 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="min-h-[calc(100vh-3.5rem)] flex flex-col justify-between px-6 pt-14 pb-10 max-w-7xl mx-auto w-full">
-        <div className="flex-1 flex flex-col justify-center">
+      <section className="min-h-[calc(100vh-3.5rem)] flex flex-col lg:flex-row">
+        {/* Text side */}
+        <div className="flex-1 flex flex-col justify-between px-6 pt-12 pb-10 max-w-4xl">
           <p
-            className="text-[0.7rem] tracking-[0.35em] uppercase text-lake mb-10 fade-up fade-up-1"
+            className="text-[0.65rem] tracking-[0.35em] uppercase text-lake fade-up fade-up-1"
             style={{ fontFamily: "var(--font-space), sans-serif" }}
           >
             Chicago, Illinois &nbsp;&middot;&nbsp; Est. 2024
           </p>
-          <h1
-            className="font-label leading-none fade-up fade-up-2"
-            style={{
-              fontWeight: 700,
-              fontSize: "clamp(5.5rem, 20vw, 19rem)",
-              lineHeight: 0.86,
-              letterSpacing: "0.02em",
-            }}
-          >
-            Lake
-            <br />
-            <span style={{ color: "oklch(50% 0.18 228)", textTransform: "none" }}>Effect</span>
-            <br />
-            <span
-              className="font-label"
+          <div>
+            <h1
+              className="font-label leading-none fade-up fade-up-2"
               style={{
-                fontSize: "clamp(1.8rem, 6vw, 6rem)",
-                letterSpacing: "0.1em",
-                color: "oklch(68% 0.10 212)",
                 fontWeight: 700,
+                fontSize: "clamp(4rem, 13vw, 12rem)",
+                lineHeight: 0.9,
+                letterSpacing: "-0.01em",
               }}
             >
-              Records
-            </span>
-          </h1>
+              Lake
+              <br />
+              <span style={{ color: "oklch(50% 0.18 228)" }}>Effect</span>
+              <br />
+              <span
+                className="font-label"
+                style={{
+                  fontSize: "clamp(1.4rem, 4.5vw, 4.5rem)",
+                  letterSpacing: "0.06em",
+                  color: "oklch(68% 0.10 212)",
+                  fontWeight: 700,
+                }}
+              >
+                Records
+              </span>
+            </h1>
+          </div>
+          <div className="fade-up fade-up-3">
+            <div className="w-full h-px bg-shore mb-5" />
+            <p
+              className="text-[0.62rem] tracking-[0.28em] uppercase text-ice"
+              style={{ fontFamily: "var(--font-space), sans-serif" }}
+            >
+              Gyration music &nbsp;&middot;&nbsp; Open air parties &nbsp;&middot;&nbsp; Custom soundsystem &nbsp;&middot;&nbsp; Choice venue excursions
+            </p>
+          </div>
         </div>
-        <div className="fade-up fade-up-3">
-          <div className="w-full h-px bg-shore mb-5" />
-          <p
-            className="text-[0.68rem] tracking-[0.3em] uppercase text-ice"
-            style={{ fontFamily: "var(--font-space), sans-serif" }}
-          >
-            Gyration music &nbsp;&middot;&nbsp; Open air parties &nbsp;&middot;&nbsp; Custom soundsystem &nbsp;&middot;&nbsp; Choice venue excursions
-          </p>
+
+        {/* Image side */}
+        <div className="relative w-full lg:w-[38%] h-64 lg:h-auto shrink-0 fade-up fade-up-4">
+          <Image
+            src="/img/cold_front_vol_2.jpg"
+            alt="Cold Front Vol. 2"
+            fill
+            className="object-cover"
+            priority
+          />
+          <div
+            className="absolute inset-0"
+            style={{
+              background: "linear-gradient(to right, oklch(10% 0.028 246) 0%, transparent 30%), linear-gradient(to top, oklch(10% 0.028 246) 0%, transparent 25%)",
+            }}
+          />
+          <div className="absolute bottom-6 left-6 lg:bottom-8 lg:left-8">
+            <p
+              className="text-[0.6rem] tracking-[0.3em] uppercase text-ice"
+              style={{ fontFamily: "var(--font-space), sans-serif" }}
+            >
+              Cold Front Vol. 2
+            </p>
+          </div>
         </div>
       </section>
 
